@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
+        <link rel="stylesheet" href="style.css" />
+        <script defer src="https://d3js.org/d3.v6.min.js"></script>
+        <script src="https://unpkg.com/topojson@3"></script>
+        <script defer src="script.js"></script>
+    </head>
+    <body>
+        <h1>Airport Connections</h1>
+        <form>
+            <input type="radio" name="pick" value="force"> Force
+            <input type="radio" name="pick" value="map"> Map
+          </form>
+          <div id="tooltip" class="hidden">
+            <p><span id="value"></span></p>
+          </div>
+    </body>
