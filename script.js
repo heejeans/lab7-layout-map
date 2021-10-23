@@ -8,16 +8,17 @@ Promise.all([
   
     const n = airports.nodes;
     const l = airports.links;
-    console.log("l",l);
-    console.log("n", n);
+    console.log(l);
+    console.log(n);
+   
     const height = 400;
     const width = 600;
 
-    let worldmap=data[1];
-    console.log("world",worldmap);
+    let worldmap = data[1];
+    console.log(worldmap);
     
     const features = topojson.feature(worldmap, worldmap.objects.countries).features;
-    console.log("feats",features);
+    console.log(features);
     
     const svg = d3.select("body")
     .append("svg")
@@ -54,7 +55,7 @@ Promise.all([
     .force("y", d3.forceY());
   
     let drag = (force,t) => {
-      function startdrag(e){
+      function dragstart(e){
         if(!e.active) force.alphaTarget(0.3).restart();
         e.subject.fx = e.subject.x;
         e.subject.fy = e.subject.y;
@@ -63,16 +64,16 @@ Promise.all([
         e.subject.fx = e.x;
         e.subject.fy = e.y;
       }
-      function enddrag(e){
+      function dragend(e){
         if(!e.active) force.alphaTarget(0);
         e.subject.fx = null;
         e.subject.fy = null;
       }
   
       return d3.drag()
-        .on("start",startdrag)
+        .on("start",dragstart)
         .on("drag",dragged)
-        .on("end",enddrag)
+        .on("end",dragend)
         .filter( t === "force")
         ;   
     };
@@ -86,7 +87,7 @@ Promise.all([
     const nodes = svg.selectAll("circle")
     .data(n)                              
     .join("circle") 
-    .attr("fill","plum")
+    .attr("fill","orange")
     .attr("r", d=>size( d.passengers));
     
     nodes.call(drag(force,"force"));
@@ -165,10 +166,10 @@ Promise.all([
       }
   
       d3.selectAll("input").on("change", event=>{
-          const vis = event.target.value;// selected button
-          console.log("vis",vis);
+          const visType = event.target.value;// selected button
+          console.log("vis",visType);
           
-          switchLayout(vis);
+          switchLayout(visType);
       
         });
         
